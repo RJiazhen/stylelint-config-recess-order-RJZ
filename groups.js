@@ -11,10 +11,34 @@ const propertyGroups = [
 		 * @see https://github.com/css-modules/css-modules#composition
 		 */
 		properties: ['composes'],
+		noEmptyLineBetween: true,
 	},
 	{
 		// Must be first (unless using the above).
 		properties: ['all'],
+		noEmptyLineBetween: true,
+	},
+	{
+		// Grid Position
+		properties: ['grid-area', 'align-self', 'justify-self'],
+		noEmptyLineBetween: true,
+	},
+	{
+		// Margin
+		properties: [
+			'margin',
+			'margin-block',
+			'margin-block-start',
+			'margin-block-end',
+			'margin-inline',
+			'margin-inline-start',
+			'margin-inline-end',
+			'margin-top',
+			'margin-right',
+			'margin-bottom',
+			'margin-left',
+		],
+		noEmptyLineBetween: true,
 	},
 	{
 		// Position.
@@ -29,10 +53,13 @@ const propertyGroups = [
 			'left',
 			'z-index',
 		],
+		noEmptyLineBetween: true,
 	},
 	{
 		// Display mode.
 		properties: ['box-sizing', 'display'],
+		emptyLineBefore: 'never',
+		noEmptyLineBetween: true,
 	},
 	{
 		// Flexible boxes.
@@ -45,12 +72,12 @@ const propertyGroups = [
 			'flex-shrink',
 			'flex-wrap',
 		],
+		noEmptyLineBetween: true,
 	},
 	{
 		// Grid layout.
 		properties: [
 			'grid',
-			'grid-area',
 			'grid-template',
 			'grid-template-areas',
 			'grid-template-rows',
@@ -68,10 +95,8 @@ const propertyGroups = [
 			'grid-row-gap',
 			'grid-column-gap',
 		],
-	},
-	{
-		// Gap.
-		properties: ['gap', 'row-gap', 'column-gap'],
+		emptyLineBefore: 'never',
+		noEmptyLineBetween: true,
 	},
 	{
 		// Layout alignment.
@@ -81,15 +106,23 @@ const propertyGroups = [
 			'place-self',
 			'align-content',
 			'align-items',
-			'align-self',
 			'justify-content',
 			'justify-items',
-			'justify-self',
 		],
+		emptyLineBefore: 'never',
+		noEmptyLineBetween: true,
+	},
+	{
+		// Gap.
+		properties: ['gap', 'row-gap', 'column-gap'],
+		emptyLineBefore: 'always',
+		noEmptyLineBetween: true,
 	},
 	{
 		// Order.
 		properties: ['order'],
+		emptyLineBefore: 'always',
+		noEmptyLineBetween: true,
 	},
 	{
 		// Box model.
@@ -113,17 +146,6 @@ const propertyGroups = [
 			'padding-right',
 			'padding-bottom',
 			'padding-left',
-			'margin',
-			'margin-block',
-			'margin-block-start',
-			'margin-block-end',
-			'margin-inline',
-			'margin-inline-start',
-			'margin-inline-end',
-			'margin-top',
-			'margin-right',
-			'margin-bottom',
-			'margin-left',
 			'overflow',
 			'overflow-x',
 			'overflow-y',
@@ -140,6 +162,8 @@ const propertyGroups = [
 			'clip-path',
 			'clear',
 		],
+		emptyLineBefore: 'always',
+		noEmptyLineBetween: true,
 	},
 	{
 		// Typography.
@@ -219,6 +243,8 @@ const propertyGroups = [
 			'descent-override',
 			'line-gap-override',
 		],
+		emptyLineBefore: 'always',
+		noEmptyLineBetween: true,
 	},
 	{
 		// Accessibility & Interactions.
@@ -251,6 +277,8 @@ const propertyGroups = [
 			'nav-down',
 			'nav-left',
 		],
+		emptyLineBefore: 'always',
+		noEmptyLineBetween: true,
 	},
 	{
 		// Background & Borders.
@@ -337,6 +365,8 @@ const propertyGroups = [
 			'opacity',
 			'-ms-interpolation-mode',
 		],
+		emptyLineBefore: 'always',
+		noEmptyLineBetween: true,
 	},
 	{
 		// SVG Presentation Attributes.
@@ -376,6 +406,8 @@ const propertyGroups = [
 			'stop-color',
 			'stop-opacity',
 		],
+		emptyLineBefore: 'always',
+		noEmptyLineBetween: true,
 	},
 	{
 		// Transitions & Animation.
@@ -399,7 +431,19 @@ const propertyGroups = [
 			'animation-iteration-count',
 			'animation-direction',
 		],
+		emptyLineBefore: 'always',
+		noEmptyLineBetween: true,
 	},
 ]
 
-module.exports = propertyGroups
+/** PropertyConfig */
+const propertyConfig = {
+	unspecified: 'bottom',
+	emptyLineBeforeUnspecified: 'always',
+	emptyLineMinimumPropertyThreshold: 4,
+}
+
+module.exports = {
+	propertyGroups,
+	propertyConfig,
+}

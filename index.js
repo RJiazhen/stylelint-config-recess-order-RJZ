@@ -1,4 +1,4 @@
-const propertyGroups = require('./groups.js')
+const { propertyGroups } = require('./groups.js')
 
 module.exports = {
 	plugins: ['stylelint-order'],
