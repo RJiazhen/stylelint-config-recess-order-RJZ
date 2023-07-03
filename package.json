@@ -1,7 +1,7 @@
 {
-  "name": "stylelint-config-recess-order",
-  "version": "4.2.0",
-  "description": "Recess-based property sort order for Stylelint.",
+  "name": "stylelint-config-recess-order-RJZ",
+  "version": "1.0.0",
+  "description": "Recess-based property sort order for Stylelint. Modify for myself",
   "keywords": [
     "bootstrap",
     "properties-order",
