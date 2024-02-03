@@ -1,5 +1,9 @@
 /**
  * @typedef {Object} Group
+ * @property {string} [groupName]
+ * @property {'always' | 'never' | 'threshold'} [emptyLineBefore]
+ * @property {boolean} [noEmptyLineBetween]
+ * @property {undefined | 'flexible'} [order]
  * @property {Array<string>} properties
  */
 
@@ -10,21 +14,20 @@ const propertyGroups = [
 		 * Compose rules from other selectors in CSS Modules.
 		 * @see https://github.com/css-modules/css-modules#composition
 		 */
+		emptyLineBefore: 'never',
 		properties: ['composes'],
-		noEmptyLineBetween: true,
 	},
 	{
 		// Must be first (unless using the above).
 		properties: ['all'],
-		noEmptyLineBetween: true,
 	},
 	{
 		// Grid Position
 		properties: ['grid-area', 'align-self', 'justify-self'],
-		noEmptyLineBetween: true,
 	},
 	{
 		// Margin
+		emptyLineBefore: 'never',
 		properties: [
 			'margin',
 			'margin-block',
@@ -38,7 +41,6 @@ const propertyGroups = [
 			'margin-bottom',
 			'margin-left',
 		],
-		noEmptyLineBetween: true,
 	},
 	{
 		// Position.
@@ -53,76 +55,10 @@ const propertyGroups = [
 			'left',
 			'z-index',
 		],
-		noEmptyLineBetween: true,
-	},
-	{
-		// Display mode.
-		properties: ['box-sizing', 'display'],
-		emptyLineBefore: 'never',
-		noEmptyLineBetween: true,
-	},
-	{
-		// Flexible boxes.
-		properties: [
-			'flex',
-			'flex-basis',
-			'flex-direction',
-			'flex-flow',
-			'flex-grow',
-			'flex-shrink',
-			'flex-wrap',
-		],
-		noEmptyLineBetween: true,
-	},
-	{
-		// Grid layout.
-		properties: [
-			'grid',
-			'grid-template',
-			'grid-template-areas',
-			'grid-template-rows',
-			'grid-template-columns',
-			'grid-row',
-			'grid-row-start',
-			'grid-row-end',
-			'grid-column',
-			'grid-column-start',
-			'grid-column-end',
-			'grid-auto-rows',
-			'grid-auto-columns',
-			'grid-auto-flow',
-			'grid-gap',
-			'grid-row-gap',
-			'grid-column-gap',
-		],
-		emptyLineBefore: 'never',
-		noEmptyLineBetween: true,
-	},
-	{
-		// Layout alignment.
-		properties: [
-			'place-content',
-			'place-items',
-			'place-self',
-			'align-content',
-			'align-items',
-			'justify-content',
-			'justify-items',
-		],
-		emptyLineBefore: 'never',
-		noEmptyLineBetween: true,
-	},
-	{
-		// Gap.
-		properties: ['gap', 'row-gap', 'column-gap'],
-		emptyLineBefore: 'always',
-		noEmptyLineBetween: true,
 	},
 	{
 		// Order.
 		properties: ['order'],
-		emptyLineBefore: 'always',
-		noEmptyLineBetween: true,
 	},
 	{
 		// Box model.
@@ -135,17 +71,6 @@ const propertyGroups = [
 			'min-height',
 			'max-height',
 			'aspect-ratio',
-			'padding',
-			'padding-block',
-			'padding-block-start',
-			'padding-block-end',
-			'padding-inline',
-			'padding-inline-start',
-			'padding-inline-end',
-			'padding-top',
-			'padding-right',
-			'padding-bottom',
-			'padding-left',
 			'overflow',
 			'overflow-x',
 			'overflow-y',
@@ -162,90 +87,8 @@ const propertyGroups = [
 			'clip-path',
 			'clear',
 		],
-		emptyLineBefore: 'always',
-		noEmptyLineBetween: true,
 	},
-	{
-		// Typography.
-		properties: [
-			'font',
-			'font-family',
-			'font-size',
-			'font-variation-settings',
-			'font-style',
-			'font-weight',
-			'font-feature-settings',
-			'font-optical-sizing',
-			'font-kerning',
-			'font-variant',
-			'font-variant-ligatures',
-			'font-variant-caps',
-			'font-variant-alternates',
-			'font-variant-numeric',
-			'font-variant-east-asian',
-			'font-variant-position',
-			'font-size-adjust',
-			'font-stretch',
-			'font-effect',
-			'font-emphasize',
-			'font-emphasize-position',
-			'font-emphasize-style',
-			'-webkit-font-smoothing',
-			'-moz-osx-font-smoothing',
-			'font-smooth',
-			'hyphens',
-			'line-height',
-			'color',
-			'text-align',
-			'text-align-last',
-			'text-emphasis',
-			'text-emphasis-color',
-			'text-emphasis-style',
-			'text-emphasis-position',
-			'text-decoration',
-			'text-decoration-line',
-			'text-decoration-thickness',
-			'text-decoration-style',
-			'text-decoration-color',
-			'text-underline-position',
-			'text-underline-offset',
-			'text-indent',
-			'text-justify',
-			'text-outline',
-			'-ms-text-overflow',
-			'text-overflow',
-			'text-overflow-ellipsis',
-			'text-overflow-mode',
-			'text-shadow',
-			'text-transform',
-			'text-wrap',
-			'-webkit-text-size-adjust',
-			'-ms-text-size-adjust',
-			'letter-spacing',
-			'word-break',
-			'word-spacing',
-			'word-wrap', // Legacy name for `overflow-wrap`
-			'overflow-wrap',
-			'tab-size',
-			'white-space',
-			'vertical-align',
 
-			'list-style',
-			'list-style-position',
-			'list-style-type',
-			'list-style-image',
-
-			'src',
-			'font-display',
-			'unicode-range',
-			'size-adjust',
-			'ascent-override',
-			'descent-override',
-			'line-gap-override',
-		],
-		emptyLineBefore: 'always',
-		noEmptyLineBetween: true,
-	},
 	{
 		// Accessibility & Interactions.
 		properties: [
@@ -277,8 +120,6 @@ const propertyGroups = [
 			'nav-down',
 			'nav-left',
 		],
-		emptyLineBefore: 'always',
-		noEmptyLineBetween: true,
 	},
 	{
 		// Background & Borders.
@@ -365,8 +206,6 @@ const propertyGroups = [
 			'opacity',
 			'-ms-interpolation-mode',
 		],
-		emptyLineBefore: 'always',
-		noEmptyLineBetween: true,
 	},
 	{
 		// SVG Presentation Attributes.
@@ -406,8 +245,6 @@ const propertyGroups = [
 			'stop-color',
 			'stop-opacity',
 		],
-		emptyLineBefore: 'always',
-		noEmptyLineBetween: true,
 	},
 	{
 		// Transitions & Animation.
@@ -431,19 +268,159 @@ const propertyGroups = [
 			'animation-iteration-count',
 			'animation-direction',
 		],
-		emptyLineBefore: 'always',
-		noEmptyLineBetween: true,
+	},
+	{
+		// Padding and display mode.
+		properties: [
+			'padding',
+			'padding-block',
+			'padding-block-start',
+			'padding-block-end',
+			'padding-inline',
+			'padding-inline-start',
+			'padding-inline-end',
+			'padding-top',
+			'padding-right',
+			'padding-bottom',
+			'padding-left',
+			'box-sizing',
+			'display',
+		],
+	},
+	{
+		// Flexible boxes.
+		emptyLineBefore: 'never',
+		properties: [
+			'flex',
+			'flex-basis',
+			'flex-direction',
+			'flex-flow',
+			'flex-grow',
+			'flex-shrink',
+			'flex-wrap',
+		],
+	},
+	{
+		// Grid layout.
+		emptyLineBefore: 'never',
+		properties: [
+			'grid',
+			'grid-template',
+			'grid-template-areas',
+			'grid-template-rows',
+			'grid-template-columns',
+			'grid-row',
+			'grid-row-start',
+			'grid-row-end',
+			'grid-column',
+			'grid-column-start',
+			'grid-column-end',
+			'grid-auto-rows',
+			'grid-auto-columns',
+			'grid-auto-flow',
+			'grid-gap',
+			'grid-row-gap',
+			'grid-column-gap',
+		],
+	},
+	{
+		// Gap.
+		groupName: 'Gap',
+		emptyLineBefore: 'never',
+		properties: ['gap', 'row-gap', 'column-gap'],
+	},
+	{
+		// Layout alignment.
+		emptyLineBefore: 'never',
+		properties: [
+			'place-content',
+			'place-items',
+			'place-self',
+			'align-content',
+			'align-items',
+			'justify-content',
+			'justify-items',
+		],
+	},
+	{
+		// Typography.
+		properties: [
+			'font',
+			'font-family',
+			'font-size',
+			'font-variation-settings',
+			'font-style',
+			'font-weight',
+			'font-feature-settings',
+			'font-optical-sizing',
+			'font-kerning',
+			'font-variant',
+			'font-variant-ligatures',
+			'font-variant-caps',
+			'font-variant-alternates',
+			'font-variant-numeric',
+			'font-variant-east-asian',
+			'font-variant-position',
+			'font-size-adjust',
+			'font-stretch',
+			'font-effect',
+			'font-emphasize',
+			'font-emphasize-position',
+			'font-emphasize-style',
+			'-webkit-font-smoothing',
+			'-moz-osx-font-smoothing',
+			'font-smooth',
+			'hyphens',
+			'line-height',
+			'color',
+			'text-align',
+			'text-align-last',
+			'text-emphasis',
+			'text-emphasis-color',
+			'text-emphasis-style',
+			'text-emphasis-position',
+			'text-decoration',
+			'text-decoration-line',
+			'text-decoration-thickness',
+			'text-decoration-style',
+			'text-decoration-color',
+			'text-underline-position',
+			'text-underline-offset',
+			'text-indent',
+			'text-justify',
+			'text-outline',
+			'-ms-text-overflow',
+			'text-overflow',
+			'text-overflow-ellipsis',
+			'text-overflow-mode',
+			'text-shadow',
+			'text-transform',
+			'text-wrap',
+			'-webkit-text-size-adjust',
+			'-ms-text-size-adjust',
+			'letter-spacing',
+			'word-break',
+			'word-spacing',
+			'word-wrap', // Legacy name for `overflow-wrap`
+			'overflow-wrap',
+			'tab-size',
+			'white-space',
+			'vertical-align',
+
+			'list-style',
+			'list-style-position',
+			'list-style-type',
+			'list-style-image',
+
+			'src',
+			'font-display',
+			'unicode-range',
+			'size-adjust',
+			'ascent-override',
+			'descent-override',
+			'line-gap-override',
+		],
 	},
 ]
 
-/** PropertyConfig */
-const propertyConfig = {
-	unspecified: 'bottom',
-	emptyLineBeforeUnspecified: 'always',
-	emptyLineMinimumPropertyThreshold: 4,
-}
-
-module.exports = {
-	propertyGroups,
-	propertyConfig,
-}
+module.exports = propertyGroups
