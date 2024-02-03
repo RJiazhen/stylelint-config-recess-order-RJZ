@@ -4,6 +4,15 @@
 [![npm downloads][npm-dls]][npm-url]
 [![github issues][issues-img]][issues-url]
 
+根据原stylelint-config-recess-order重新修改的个人自用css属性顺序配置。
+
+按照以下顺序对css属性的顺序进行限制：
+
+1. 自身定位相关属性（`grid-area`、`margin`、`postion`等）；
+2. 自身样式相关属性（`width`、`backgroud`、`border`等）；
+3. 子元素定位相关属性（`padding`、`grid`、`align-items`等）；
+4. 内部文本相关属性（`font`、`color`、`word-wrap`等）；
+
 A [Stylelint][] config that sorts CSS properties the way [Recess][] did and
 Bootstrap [did][]/[does][].
 
@@ -13,7 +22,7 @@ Bootstrap [did][]/[does][].
 
 1.  Add [stylelint][] and this package to your project:
     ```sh
-    npm install --save-dev stylelint stylelint-config-recess-order
+    npm install --save-dev stylelint stylelint-config-recess-order-rjz
     ```
 2.  Configure your stylelint configuration file to extend this package:
     ```js
